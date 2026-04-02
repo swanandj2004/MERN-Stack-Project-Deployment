@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./App.css";
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [text, setText] = useState("");
 
-  const API = "http://localhost:5000/api/todos";
+  const API = "http://your-ec2-public-ip:5000/api/todos";
 
   useEffect(() => {
     fetchTodos();
@@ -29,15 +30,17 @@ function App() {
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
+    <div className="container">
       <h1>MERN Todo App</h1>
 
-      <input
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Enter todo"
-      />
-      <button onClick={addTodo}>Add</button>
+      <div className="input-section">
+        <input
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Enter a task"
+        />
+        <button onClick={addTodo}>Add</button>
+      </div>
 
       <ul>
         {todos.map((todo) => (
